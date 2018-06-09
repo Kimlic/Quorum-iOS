@@ -5,11 +5,10 @@ Pod::Spec.new do |s|
   s.description           = <<-DESC
                             Quorum library makes it easy to communicate with JPMorgan Chase Quorum
                             DESC
-  s.homepage              = "http://kimlic/Quorum-iOS"
+  s.homepage              = "https://github.com/Kimlic/Quorum-iOS"
   s.license               = "Apache License 2.0"
   s.author                = { "Pharos Production Inc." => "dmytro@pharosproduction.com" }
-  s.source                = { :git => "http://kimlic/Quorum-iOS.git", :tag => "#{s.version}" }
-  s.social_media_url      = 'https://twitter.com/'
+  s.source                = { :git => "https://github.com/Kimlic/Quorum-iOS", :tag => "#{s.version}" }
 
   s.source_files          = "Quorum/Classes/**/*.{h,swift}", 
   s.public_header_files   = "Quorum/Classes/**/*.{h}"
