@@ -17,7 +17,7 @@ extension Web3 {
     static func quorum(keyManager: KeystoreManager, params: Web3Params) throws -> web3 {
         guard let fromAddress = keyManager.addresses?.first else { throw Web3Error.keyManagerAddress }
 
-        let url = try buildURL(scheme: params.scheme, host: params.host, port: params.port)
+        let url = try buildURL(scheme: params.scheme, host: params.host, port: params.port, path: params.path)
         let network = Networks.Custom(networkID: BigUInt(params.networkId))
         guard let provider = Web3HttpProvider(url, network: network, keystoreManager: keyManager) else { throw Web3Error.webProvider(url: url, network: network) }
         let web = web3(provider: provider)
@@ -28,11 +28,15 @@ extension Web3 {
     
     // MARK: - Private
     
-    private static func buildURL(scheme: String, host: String, port: Int) throws -> URL {
+    private static func buildURL(scheme: String, host: String, port: Int, path: String?) throws -> URL {
         var components = URLComponents()
         components.scheme = scheme
         components.host = host
         components.port = port
+        
+        if let path = path {
+            components.path = path
+        }
         
         return try components.asURL()
     }

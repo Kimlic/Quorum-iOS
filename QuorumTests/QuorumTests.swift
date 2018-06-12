@@ -42,7 +42,7 @@ class QuorumTests: XCTestCase {
         let quorum1 = Quorum()
         print("Q1: ", quorum1.params)
         
-        let config = Web3Config(scheme: "http", host: "127.0.0.2", port: 22000, networkId: 10)
+        let config = Web3Config(scheme: "http", host: "127.0.0.1", port: 22000, path: "/api/proxy", networkId: 10)
         let quorumManager = Quorum(config)
         print("Q2: ", quorumManager.params)
         
