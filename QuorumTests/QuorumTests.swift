@@ -53,8 +53,13 @@ class QuorumTests: XCTestCase {
         let value = try! quorumManager.call(contract: simpleStorageContract, method: simpleStorageContract.getters.getValue)
         print("STORED VALUE: ", value, "\n")
         
-        let receiptSet = try! quorumManager.send(contract: simpleStorageContract, method: simpleStorageContract.transactions.setValue, params: [10])
-        print("RECEIPT SET: ", receiptSet, "\n")
+        do {
+            let receiptSet = try quorumManager.send(contract: simpleStorageContract, method: simpleStorageContract.transactions.setValue, params: [10])
+            print("RECEIPT SET: ", receiptSet, "\n")
+        } catch let err {
+            print("CATCHED: \(err)")
+        }
+        
         
         let newValue = try! quorumManager.call(contract: simpleStorageContract, method: "get")
         print("NEW STORED VALUE: ", newValue, "\n")

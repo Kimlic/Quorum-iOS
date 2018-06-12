@@ -85,19 +85,19 @@ public final class Quorum {
         var options = Web3Options.quorumOptions()
         options.from = account
 
-        let temp = web3
-            .contract(contract.ABI, at: contractAddress, abiVersion: 2)!
-            .method(method, parameters: params as [AnyObject], options: options)!
+        guard let contract = web3.contract(contract.ABI, at: contractAddress, abiVersion: 2) else { throw Web3Error.invalidContract }
+        guard let intermediate = contract.method(method, parameters: params as [AnyObject], options: options) else { throw Web3Error.invalidMethod }
+        
+        guard let nonce = web3.eth.getTransactionCount(address: account).value else { throw Web3Error.serverError }
+        try intermediate.setNonce(nonce)
+        var transaction = intermediate.transaction
+        
+        guard let keyManager = web3.provider.attachedKeystoreManager else { throw Web3Error.keystoreNotFound }
+        let key = try keyManager.UNSAFE_getPrivateKeyData(password: Quorum.password, account: account)
+        try Web3Signer.EIP155Signer.sign(transaction: &transaction, privateKey: key)
+        intermediate.transaction = transaction
 
-        let nonce = web3.eth.getTransactionCount(address: account).value!
-        try! temp.setNonce(nonce)
-        var transaction = temp.transaction
-        let keyManager = web3.provider.attachedKeystoreManager!
-        let key = try! keyManager.UNSAFE_getPrivateKeyData(password: Quorum.password, account: account)
-        try! Web3Signer.EIP155Signer.sign(transaction: &transaction, privateKey: key)
-        temp.transaction = transaction
-
-        let result = temp.sendSigned()
+        let result = intermediate.sendSigned()
 
         switch result {
         case .success(let success):
