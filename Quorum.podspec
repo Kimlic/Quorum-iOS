@@ -24,5 +24,5 @@ Pod::Spec.new do |s|
   s.dependency 'Result', '~> 3.0'
   s.dependency 'libsodium', '~> 1.0'
   s.dependency 'secp256k1_ios', '~> 0.1'
-  s.dependency 'web3swift'
+  s.dependency 'web3swift', '~> 0.8.2'
 end
