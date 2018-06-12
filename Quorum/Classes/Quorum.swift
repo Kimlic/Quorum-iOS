@@ -110,7 +110,7 @@ public final class Quorum {
     
     //MARK: - Life
     
-    convenience init(params: Web3Params = Web3ParamsLocalhost()) {
+    convenience init(_ params: Web3Params = Web3ParamsLocalhost()) {
         self.init()
         
         self.params = params
