@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.source                = { :git => "https://github.com/Kimlic/Quorum-iOS", :tag => "#{s.version}" }
 
   s.source_files          = "Quorum/Classes/**/*.{h,swift}", 
-  s.public_header_files   = "Quorum/Classes/**/*.{h}"
+  # s.public_header_files   = "Quorum/Classes/**/*.{h}"
 
   s.swift_version         = '4.1'
   s.module_name           = 'Quorum'
