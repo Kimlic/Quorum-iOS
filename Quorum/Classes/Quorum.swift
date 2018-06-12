@@ -22,6 +22,7 @@ public final class Quorum {
 
     //MARK: - Variables
     
+    public private(set) var params: Web3Params!
     private lazy var web3 = try! Web3.quorum(keyManager: Quorum.getBip32KeystoreManager(), params: Web3ParamsLocalhost())
     
     //MARK: - Public
@@ -109,7 +110,13 @@ public final class Quorum {
     
     //MARK: - Life
     
-    public init() {}
+    convenience init(params: Web3Params = Web3ParamsLocalhost()) {
+        self.init()
+        
+        self.params = params
+    }
+    
+    private init() {}
     
     //MARK: - Private
     

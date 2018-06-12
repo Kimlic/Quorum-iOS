@@ -13,7 +13,13 @@ class QuorumTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        let quorum1 = Quorum()
+        print("Q1: ", quorum1.params)
+        
+        let config = Web3Config(scheme: "http", host: "127.0.0.2", port: 22000, networkId: 10)
+        let quorum2 = Quorum(params: config)
+        print("Q2: ", quorum2.params)
     }
     
     override func tearDown() {

@@ -8,18 +8,25 @@
 
 import Foundation
 
-protocol Web3Params {
+public protocol Web3Params {
     var scheme: String { get }
     var host: String { get }
     var port: Int { get }
     var networkId: Int { get }
 }
 
-struct Web3ParamsLocalhost: Web3Params {
-    let scheme = "http"
-    let host = "127.0.0.1"
-    let port = 22000
-    let networkId = 10
+public struct Web3ParamsLocalhost: Web3Params {
+    public let scheme = "http"
+    public let host = "127.0.0.1"
+    public let port = 22000
+    public let networkId = 10
+}
+
+public struct Web3Config: Web3Params {
+    public let scheme: String
+    public let host: String
+    public let port: Int
+    public let networkId: Int
 }
 
 struct Web3ParamsGas {
