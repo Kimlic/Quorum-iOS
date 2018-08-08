@@ -21,6 +21,8 @@ extension Web3 {
         let network = Networks.Custom(networkID: BigUInt(params.networkId))
         guard let provider = Web3HttpProvider(url, network: network, keystoreManager: keyManager) else { throw Web3Error.webProvider(url: url, network: network) }
         let web = web3(provider: provider)
+        // Set dispatcher policy
+        web.setDispatcherPolicy(policy: .NoBatching)
         web.options = quorumOptions(fromAddress)
         
         return web
