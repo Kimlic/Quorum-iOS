@@ -1,12 +1,11 @@
 def import_pods
   pod 'Alamofire', '~> 4.7'
-  pod 'Alamofire-Synchronous', '~> 4.0'
   pod 'BigInt', '~> 3.0'
-  pod 'CryptoSwift', :git => 'https://github.com/Kimlic/CryptoSwift', :branch => 'master', :modular_headers => true
   pod 'Result', '~> 3.0'
   pod 'libsodium', '~> 1.0'
-  pod 'secp256k1_ios', '~> 0.1'
-  pod 'web3swift', :git => 'https://github.com/Kimlic/web3swift', :branch => 'master', :modular_headers => true
+  pod 'CryptoSwift', '~> 0.10'
+  pod 'secp256k1_ios', :git => 'https://github.com/shamatar/secp256k1_ios.git', :modular_headers => true
+  pod 'web3swift', '~> 0.8.1'
 end
 
 target 'Quorum' do

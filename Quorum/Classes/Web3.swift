@@ -14,12 +14,14 @@ extension Web3 {
     
     // MARK: - Public
     
+    // TODO: uncomment
     static func quorum(keyManager: KeystoreManager, params: Web3Params) throws -> web3 {
         guard let fromAddress = keyManager.addresses?.first else { throw Web3Error.keyManagerAddress }
 
         let url = try buildURL(scheme: params.scheme, host: params.host, port: params.port, path: params.path)
         let network = Networks.Custom(networkID: BigUInt(params.networkId))
-        guard let provider = Web3HttpProvider(url, network: network, keystoreManager: keyManager) else { throw Web3Error.webProvider(url: url, network: network) }
+//        guard let provider = Web3HttpProvider(url, network: network, keystoreManager: keyManager) else { throw Web3Error.webProvider(url: url, network: network) }
+        guard let provider = Web3HttpProvider(url, keystoreManager: keyManager) else { throw Web3Error.webProvider(url: url, network: network) }
         let web = web3(provider: provider)
         web.options = quorumOptions(fromAddress)
         
@@ -38,7 +40,7 @@ extension Web3 {
             components.path = path
         }
         
-        return try components.asURL()
+        return components.url!
     }
     
     private static func quorumOptions(_ fromAddress: EthereumAddress) -> Web3Options {

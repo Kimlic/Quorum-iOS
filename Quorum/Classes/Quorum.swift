@@ -89,7 +89,7 @@ public final class Quorum {
         guard let intermediate = contract.method(method, parameters: params as [AnyObject], options: options) else { throw Web3Error.invalidMethod }
         
         guard let nonce = web3.eth.getTransactionCount(address: account).value else { throw Web3Error.serverError }
-        try intermediate.setNonce(nonce)
+        intermediate.transaction.nonce = nonce
         var transaction = intermediate.transaction
         
         guard let keyManager = web3.provider.attachedKeystoreManager else { throw Web3Error.keystoreNotFound }
