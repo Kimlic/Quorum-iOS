@@ -5,7 +5,7 @@ def import_pods
   pod 'libsodium', '~> 1.0'
   pod 'CryptoSwift', '~> 0.10'
   pod 'secp256k1_ios', :git => 'https://github.com/shamatar/secp256k1_ios.git', :modular_headers => true
-  pod 'web3swift', '~> 0.8.1'
+  pod 'web3swift', :git => 'https://github.com/Kimlic/web3swift', :branch => 'quorum', :modular_headers => true
 end
 
 target 'Quorum' do

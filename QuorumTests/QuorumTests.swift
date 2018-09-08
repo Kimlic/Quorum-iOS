@@ -37,7 +37,7 @@ class QuorumTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        let simpleStorageContract = try! SimpleStorageContract(address: "0x973e739cb07b04522971cb5333830c66f39d09f1")
+        let simpleStorageContract = try! SimpleStorageContract(address: "0x5fbdbafb16c542cd8ec87ed6e62498bfa1206cd0")
         
         let quorum1 = Quorum()
         print("Q1: ", quorum1.params)
@@ -62,16 +62,15 @@ class QuorumTests: XCTestCase {
         } catch let err {
             print("CATCHED: \(err)")
         }
-//
-//
-//        let newValue = try! quorumManager.call(contract: simpleStorageContract, method: "get")
-//        print("NEW STORED VALUE: ", newValue, "\n")
-//
-//        let receiptSetDefault = try! quorumManager.send(contract: simpleStorageContract, method: simpleStorageContract.transactions.setDefaultValue)
-//        print("RECEIPT SETDEFAULT: ", receiptSetDefault, "\n")
-//
-//        let newNewValue = try! quorumManager.call(contract: simpleStorageContract, method: "get")
-//        print("NEW NEW STORED VALUE: ", newNewValue, "\n")
+
+        let newValue = try! quorumManager.call(contract: simpleStorageContract, method: "get")
+        print("NEW STORED VALUE: ", newValue, "\n")
+
+        let receiptSetDefault = try! quorumManager.send(contract: simpleStorageContract, method: simpleStorageContract.transactions.setDefaultValue)
+        print("RECEIPT SETDEFAULT: ", receiptSetDefault, "\n")
+
+        let newNewValue = try! quorumManager.call(contract: simpleStorageContract, method: "get")
+        print("NEW NEW STORED VALUE: ", newNewValue, "\n")
     }
     
     override func tearDown() {
